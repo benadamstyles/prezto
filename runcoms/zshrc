@@ -17,6 +17,8 @@ export NVM_DIR="/Users/ben/.nvm"
 
 export PATH=$PATH:/Users/ben/Software/activator-1.3.2-minimal
 
+alias a=atom
+
 setopt AUTO_CD
 
 setopt RM_STAR_WAIT
