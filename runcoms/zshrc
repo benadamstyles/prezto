@@ -18,6 +18,8 @@ export NVM_DIR="/Users/ben/.nvm"
 export PATH=$PATH:/Users/ben/Software/activator-1.3.2-minimal
 
 alias a=atom
+alias sc="steroids connect"
+alias sd="steroids deploy"
 
 setopt AUTO_CD
 
