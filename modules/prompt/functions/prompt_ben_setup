@@ -33,6 +33,10 @@ function jbg() {
   fi
 }
 
+function arc() {
+  cd /Volumes/DATA/Shared/Arc/
+}
+
 function prompt_ben_pwd {
   local pwd="${PWD/#$HOME/~}"
 
