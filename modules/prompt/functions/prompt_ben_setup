@@ -34,7 +34,11 @@ function jbg() {
 }
 
 function arc() {
-  cd /Volumes/DATA/Shared/Arc/
+  cd /Volumes/DATA/Shared/Arc/ && open .
+}
+
+function rpi() {
+  ssh -p "$1" pi@tcp://0.tcp.ngrok.io
 }
 
 function prompt_ben_pwd {
