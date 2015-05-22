@@ -38,7 +38,7 @@ function arc() {
 }
 
 function rpi() {
-  ssh -p "$1" pi@tcp://0.tcp.ngrok.io
+  ssh -p "$1" pi@0.tcp.ngrok.io
 }
 
 function prompt_ben_pwd {
