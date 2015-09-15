@@ -16,6 +16,7 @@ export NVM_DIR="/Users/ben/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 export PATH=$PATH:/Users/ben/Software/activator-1.3.2-minimal
+export ANDROID_HOME=/usr/local/opt/android-sdk
 
 alias a="atom ."
 alias sc="steroids connect"
