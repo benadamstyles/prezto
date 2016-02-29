@@ -18,6 +18,7 @@ export NVM_DIR="/Users/ben/.nvm"
 export PATH=$PATH:/Users/ben/Software/activator-1.3.2-minimal
 export PATH=/usr/local/opt/ruby/bin:$PATH
 export ANDROID_HOME=/usr/local/opt/android-sdk
+export LESS="M"
 
 if [ -s "${ZDOTDIR:-$HOME}/.private" ]; then
   source "${ZDOTDIR:-$HOME}/.private"
