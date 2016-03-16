@@ -20,6 +20,9 @@ export PATH=/usr/local/opt/ruby/bin:$PATH
 export ANDROID_HOME=/usr/local/opt/android-sdk
 export LESS="M"
 
+export GENYMOTION_APP=/Applications/Genymotion.app
+export GENYMOTION_SHELL=/Applications/Genymotion\ Shell.app
+
 if [ -s "${ZDOTDIR:-$HOME}/.private" ]; then
   source "${ZDOTDIR:-$HOME}/.private"
 fi
