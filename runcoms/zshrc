@@ -27,7 +27,7 @@ if [ -s "${ZDOTDIR:-$HOME}/.private" ]; then
   source "${ZDOTDIR:-$HOME}/.private"
 fi
 
-
+alias lslt="ls -lt"
 alias a="atom ."
 alias sc="steroids connect"
 alias sd="steroids deploy"
