@@ -32,6 +32,7 @@ alias a="atom ."
 alias sc="steroids connect"
 alias sd="steroids deploy"
 alias ifl="googler -j"
+alias micro-dev="~/Dev/Software/micro"
 
 # File suffix aliases
 alias -s md=msee
