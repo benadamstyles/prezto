@@ -31,6 +31,10 @@ alias lslt="ls -lt"
 alias a="atom ."
 alias sc="steroids connect"
 alias sd="steroids deploy"
+alias ifl="googler -j"
+
+# File suffix aliases
+alias -s md=msee
 
 setopt AUTO_CD
 
