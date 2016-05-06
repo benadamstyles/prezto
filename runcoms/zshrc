@@ -27,6 +27,8 @@ if [ -s "${ZDOTDIR:-$HOME}/.private" ]; then
   source "${ZDOTDIR:-$HOME}/.private"
 fi
 
+. `brew --prefix`/etc/profile.d/z.sh
+
 alias lslt="ls -lt"
 alias a="atom ."
 alias sc="steroids connect"
