@@ -25,16 +25,8 @@ function aws() {
   fi
 }
 
-function jbg() {
-  if [[ "$1" != "" ]]; then
-    jekyll build && grunt "$1"
-  else
-    jekyll build && grunt
-  fi
-}
-
-function arc() {
-  cd /Volumes/DATA/Shared/Arc/ && open .
+function download() {
+  cp "$@" ~/Downloads
 }
 
 function rpi() {
