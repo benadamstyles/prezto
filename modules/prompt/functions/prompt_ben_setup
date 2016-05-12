@@ -26,7 +26,7 @@ function aws() {
 }
 
 function download() {
-  cp "$@" ~/Downloads
+  rsync -ahr --progress "$@" ~/Downloads
 }
 
 function rpi() {
