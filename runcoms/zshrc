@@ -41,6 +41,7 @@ alias sc="steroids connect"
 alias sd="steroids deploy"
 alias ifl="googler -j"
 alias micro-dev="~/Dev/Software/micro"
+alias open-latest="ls -t | head -n1 | open -f"
 
 # File suffix aliases
 alias -s md=msee
