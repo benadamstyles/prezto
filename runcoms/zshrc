@@ -33,6 +33,10 @@ if [ -s "${ZDOTDIR:-$HOME}/.private" ]; then
   source "${ZDOTDIR:-$HOME}/.private"
 fi
 
+if [ -s $(jump-bin --zsh-integration) ]; then
+  source $(jump-bin --zsh-integration)
+fi
+
 . `brew --prefix`/etc/profile.d/z.sh
 
 alias lslt="ls -lt"
@@ -40,6 +44,7 @@ alias a="atom ."
 alias sc="steroids connect"
 alias sd="steroids deploy"
 alias ifl="googler -j"
+alias goog="googler"
 alias micro-dev="~/Dev/Software/micro"
 alias open-latest='open "`ls -t | head -n1`"'
 
@@ -112,3 +117,5 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
