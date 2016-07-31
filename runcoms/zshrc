@@ -49,8 +49,19 @@ alias goog="googler"
 alias micro-dev="~/Dev/Software/micro"
 alias open-latest='open "`ls -t | head -n1`"'
 
+# Arc-specific aliases
+alias mount-arc="mkdir /Volumes/DATA && mount_smbfs //ArcPub@arcsvr/DATA /Volumes/DATA"
+
 # File suffix aliases
 alias -s md=msee
+
+function za() {
+  z $@ && a
+}
+
+function npm-uds() {
+  npm update "$@" && npm dedupe && npm shrinkwrap --dev
+}
 
 setopt AUTO_CD
 
