@@ -5,6 +5,8 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+fpath=(/usr/local/share/zsh/site-functions $fpath)
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -49,11 +51,15 @@ alias goog="googler"
 alias micro-dev="~/Dev/Software/micro"
 alias open-latest='open "`ls -t | head -n1`"'
 
-# Arc-specific aliases
-alias mount-arc="mkdir /Volumes/DATA && mount_smbfs //ArcPub@arcsvr/DATA /Volumes/DATA"
-
 # File suffix aliases
 alias -s md=msee
+
+# Arc-specific
+alias arc-mount="mkdir /Volumes/DATA && mount_smbfs //ArcPub@arcsvr/DATA /Volumes/DATA"
+
+function arc-search() {
+  open https://www.arcpublications.co.uk/search/books/$@
+}
 
 function za() {
   z $@ && a
