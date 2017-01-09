@@ -50,12 +50,15 @@ alias ifl="googler -j"
 alias goog="googler"
 alias micro-dev="~/Dev/Software/micro"
 alias open-latest='open "`ls -t | head -n1`"'
+alias download-latest='download "`ls -t | head -n1`"'
+alias rsync='rsync -ahr --progress'
+alias backup-archive="~/Dev/Git/rsync-time-backup/tmbackup.sh backup /Volumes/ARCHIVE /Volumes/ARCHIVE-BACKUP /Volumes/ARCHIVE-BACKUP/backup.exclude && osascript -e 'display notification \"Successfully backed up ARCHIVE disk\" with title \"Backup complete!\"'"
 
 # File suffix aliases
 alias -s md=msee
 
 # Arc-specific
-alias arc-mount="mkdir /Volumes/DATA && mount_smbfs //ArcPub@arcsvr/DATA /Volumes/DATA"
+alias arc-mount="mkdir ~/mount/Arc && mount_smbfs //ArcPub:arcpub@arcsvr/DATA ~/mount/Arc"
 
 function arc-search() {
   open https://www.arcpublications.co.uk/search/books/$@
@@ -63,10 +66,6 @@ function arc-search() {
 
 function za() {
   z $@ && a
-}
-
-function npm-uds() {
-  npm update "$@" && npm dedupe && npm shrinkwrap --dev
 }
 
 setopt AUTO_CD

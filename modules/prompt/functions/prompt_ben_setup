@@ -24,8 +24,10 @@ function retry() {
 }
 
 function aws() {
-  if [[ "$1" == "as" ]]; then
+  if [[ "$1" == "hh" ]]; then
     ssh -i /Users/ben/Dropbox/Freelance/Freelance\ Apps/AmberSiren/ambersirenkeys/ambersiren.pem ubuntu@ec2-54-76-153-232.eu-west-1.compute.amazonaws.com
+  elif [[ "$1" == "hh-staging" ]]; then
+    ssh -i /Users/ben/Documents/HireHub/keys/testing-terrapin-key.pem ubuntu@ec2-52-209-157-155.eu-west-1.compute.amazonaws.com
   else
     ssh
   fi
@@ -57,6 +59,9 @@ function prompt_ben_precmd {
   # Format PWD.
   prompt_ben_pwd
 
+  # Set the tab title to current dir
+  echo -ne "\e]1;${PWD##*/}\a"
+
   # Get Git repository information.
   if (( $+functions[git-info] )); then
     git-info
@@ -66,6 +71,11 @@ function prompt_ben_precmd {
   if (( $+functions[ruby-info] )); then
     ruby-info
   fi
+}
+
+precmd() {
+  # sets the tab title to current dir
+  echo -ne "\e]1;${PWD##*/}\a"
 }
 
 function prompt_ben_setup {
