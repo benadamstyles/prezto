@@ -66,8 +66,31 @@ function arc-search() {
   open https://www.arcpublications.co.uk/search/books/$@
 }
 
-function za() {
-  z $@ && a
+function c() {
+  if [[ $@ ]]; then
+    z $@ && code .
+  else
+    code .
+  fi
+}
+
+function retry() {
+  for i in {1..$1}
+  do $@[2,-1] && break || sleep 0.1
+  done
+}
+
+function download() {
+  rsync -ahr --progress "$@" ~/Downloads
+}
+
+function rpi() {
+  ssh -p "$1" pi@0.tcp.ngrok.io
+}
+
+precmd() {
+  # sets the tab title to current dir
+  echo -ne "\e]1;${PWD##*/}\a"
 }
 
 setopt AUTO_CD
