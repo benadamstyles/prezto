@@ -40,10 +40,12 @@ if [ -s "${ZDOTDIR:-$HOME}/.private" ]; then
   source "${ZDOTDIR:-$HOME}/.private"
 fi
 
-if [ -s $(jump-bin --zsh-integration) ]; then
+# Only runs if jump is already installed
+if (( $+commands[jump-bin] )) && [ -s $(jump-bin --zsh-integration) ]; then
   source $(jump-bin --zsh-integration)
 fi
 
+# Installed with `brew install z`
 . `brew --prefix`/etc/profile.d/z.sh
 
 alias lslt="ls -lt"
@@ -192,6 +194,7 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# Spaceship prompt installed via npm
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
 prompt spaceship
