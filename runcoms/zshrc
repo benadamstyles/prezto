@@ -14,7 +14,7 @@ fi
 
 # Customize to your needs...
 
-export NVM_DIR="/Users/ben/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 if [[ $(uname) == Linux ]]; then
@@ -23,18 +23,9 @@ if [[ $(uname) == Linux ]]; then
   export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 fi
 
-export PATH=$PATH:/Users/ben/Software/activator-1.3.2-minimal
 export PATH=/usr/local/opt/ruby/bin:$PATH
-export PATH=$HOME/.fastlane/bin:$PATH
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
 export LESS="MR"
 export EDITOR=/usr/local/bin/micro
-
-export GENYMOTION_APP=/Applications/Genymotion.app
-export GENYMOTION_SHELL=/Applications/Genymotion\ Shell.app
 
 if [ -s "${ZDOTDIR:-$HOME}/.private" ]; then
   source "${ZDOTDIR:-$HOME}/.private"
@@ -49,27 +40,15 @@ fi
 . `brew --prefix`/etc/profile.d/z.sh
 
 alias lslt="ls -lt"
-alias sc="steroids connect"
-alias sd="steroids deploy"
 alias ifl="googler -j"
 alias goog="googler"
 alias micro-dev="~/Dev/Software/micro"
 alias open-latest='open "`ls -t | head -n1`"'
 alias download-latest='download "`ls -t | head -n1`"'
 alias rsync='rsync -ahr --progress'
-alias backup-archive="~/Dev/Git/rsync-time-backup/tmbackup.sh backup /Volumes/ARCHIVE /Volumes/ARCHIVE-BACKUP /Volumes/ARCHIVE-BACKUP/backup.exclude && osascript -e 'display notification \"Successfully backed up ARCHIVE disk\" with title \"Backup complete!\"'"
-alias sim='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/'
 
 # File suffix aliases
 alias -s md=msee
-
-# Arc-specific
-alias arc-mount="mkdir ~/mount/Arc && mount_smbfs //ArcPub:arcpub@arcsvr/DATA ~/mount/Arc"
-alias arc-trello="node ~/Dev/Git/arc-trello-publishing-programme/index.js"
-
-function arc-search() {
-  open https://www.arcpublications.co.uk/search/books/$@
-}
 
 function c() {
   if [[ $@ ]]; then
@@ -89,10 +68,6 @@ function download() {
   rsync -ahr --progress "$@" ~/Downloads
 }
 
-function rpi() {
-  ssh -p "$1" pi@0.tcp.ngrok.io
-}
-
 precmd() {
   # sets the tab title to current dir
   echo -ne "\e]1;${PWD##*/}\a"
@@ -101,12 +76,6 @@ precmd() {
 setopt AUTO_CD
 
 setopt RM_STAR_WAIT
-
-###-tns-completion-start-###
-if [ -f /Users/ben/.tnsrc ]; then
-  source /Users/ben/.tnsrc
-fi
-###-tns-completion-end-###
 
 ###-begin-npm-completion-###
 #
@@ -241,9 +210,3 @@ SPACESHIP_RPROMPT_ORDER=(
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_BATTERY_THRESHOLD=40
 SPACESHIP_CHAR_SUFFIX=" "
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ben/Dev/gcloud/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/ben/Dev/gcloud/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/ben/Dev/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/ben/Dev/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
