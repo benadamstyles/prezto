@@ -29,7 +29,8 @@ fi
 
 export PATH=/usr/local/opt/ruby/bin:$PATH
 export LESS="MR"
-export EDITOR=/usr/local/bin/micro
+export EDITOR="code -w"
+export GIT_EDITOR="code -w"
 
 # Only runs if jump is already installed
 if (( $+commands[jump-bin] )) && [ -s $(jump-bin --zsh-integration) ]; then
