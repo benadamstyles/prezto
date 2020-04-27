@@ -31,6 +31,7 @@ export PATH=/usr/local/opt/ruby/bin:$PATH
 export LESS="MR"
 export EDITOR="code -w"
 export GIT_EDITOR="code -w"
+export BAT_THEME="GitHub"
 
 # Only runs if jump is already installed
 if (( $+commands[jump-bin] )) && [ -s $(jump-bin --zsh-integration) ]; then
@@ -211,3 +212,5 @@ SPACESHIP_RPROMPT_ORDER=(
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_BATTERY_THRESHOLD=40
 SPACESHIP_CHAR_SUFFIX=" "
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
