@@ -19,7 +19,7 @@ if [ -s "${ZDOTDIR:-$HOME}/.private" ]; then
 fi
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 if [[ $(uname) == Linux ]]; then
   export PATH="$HOME/.linuxbrew/bin:$PATH"
@@ -39,7 +39,7 @@ if (( $+commands[jump-bin] )) && [ -s $(jump-bin --zsh-integration) ]; then
 fi
 
 # Installed with `brew install z`
-. `brew --prefix`/etc/profile.d/z.sh
+. $(brew --prefix)/etc/profile.d/z.sh
 
 alias lslt="ls -lt"
 alias ifl="googler -j"
@@ -48,6 +48,8 @@ alias micro-dev="~/Dev/Software/micro"
 alias open-latest='open "`ls -t | head -n1`"'
 alias download-latest='download "`ls -t | head -n1`"'
 alias rsync='rsync -ahr --progress'
+alias y='yarn'
+alias ym='yarn maid'
 
 # File suffix aliases
 alias -s md=msee
@@ -61,8 +63,8 @@ function c() {
 }
 
 function retry() {
-  for i in {1..$1}
-  do $@[2,-1] && break || sleep 0.1
+  for i in {1..$1}; do
+    $@[2,-1] && break || sleep 0.1
   done
 }
 
@@ -88,7 +90,7 @@ setopt RM_STAR_WAIT
 #
 # for BASH
 if type complete &>/dev/null; then
-    _npm_completion () {
+  _npm_completion() {
         local words cword
         if type _get_comp_words_by_ref &>/dev/null; then
             _get_comp_words_by_ref -n = -n @ -w words -i cword
@@ -99,13 +101,12 @@ if type complete &>/dev/null; then
 
         local si="$IFS"
 
-
         # if your npm command includes `install` or `i `
         if [[ ${words[@]} =~ 'install' ]] || [[ ${words[@]} =~ 'i ' ]]; then
             local cur=${COMP_WORDS[COMP_CWORD]}
 
             # supply autocomplete words from `~/.npm`, with $cur being value of current expansion like 'expre'
-            COMPREPLY=( $( compgen -W "$(ls ~/.npm )" -- $cur ) )
+      COMPREPLY=($(compgen -W "$(ls ~/.npm)" -- $cur))
         else
             IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
                 COMP_LINE="$COMP_LINE" \
@@ -121,7 +122,6 @@ if type complete &>/dev/null; then
 elif type compdef &>/dev/null; then
     _npm_completion() {
         local si=$IFS
-
 
         # if your npm command includes `install`
         if [[ ${words} =~ 'install' ]] || [[ ${words} =~ 'i ' ]]; then
@@ -144,7 +144,7 @@ elif type compdef &>/dev/null; then
     compdef _npm_completion npm
 elif type compctl &>/dev/null; then
 
-    _npm_completion () {
+  _npm_completion() {
         local cword line point words si
         read -Ac words
         read -cn cword
@@ -167,7 +167,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # Spaceship prompt installed via npm
 # Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
+autoload -U promptinit
+promptinit
 prompt spaceship
 
 SPACESHIP_PROMPT_ORDER=(
