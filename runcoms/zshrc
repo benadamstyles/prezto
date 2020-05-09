@@ -51,6 +51,7 @@ alias download-latest='download "`ls -t | head -n1`"'
 alias rsync='rsync -ahr --progress'
 alias y='yarn'
 alias ym='yarn maid'
+alias yw='yarn workspace'
 
 # Personal machines only
 alias backup-archive="~/Dev/Git/rsync-time-backup/tmbackup.sh backup /Volumes/ARCHIVE /Volumes/ARCHIVE-BACKUP /Volumes/ARCHIVE-BACKUP/backup.exclude && osascript -e 'display notification \"Successfully backed up ARCHIVE disk\" with title \"Backup complete!\"'"
