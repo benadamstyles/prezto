@@ -50,6 +50,8 @@ alias open-latest='open "`ls -t | head -n1`"'
 alias download-latest='download "`ls -t | head -n1`"'
 alias rsync='rsync -ahr --progress'
 alias y='yarn'
+alias ya='yarn add'
+alias yad='yarn add -D'
 alias ym='yarn maid'
 alias yw='yarn workspace'
 
