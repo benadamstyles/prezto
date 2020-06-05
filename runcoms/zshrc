@@ -49,6 +49,8 @@ alias micro-dev="~/Dev/Software/micro"
 alias open-latest='open "`ls -t | head -n1`"'
 alias download-latest='download "`ls -t | head -n1`"'
 alias rsync='rsync -ahr --progress'
+alias curnet='networksetup -listnetworkserviceorder | grep $(route get example.com | grep -o "en[[:digit:]]")'
+
 alias y='yarn'
 alias ya='yarn add'
 alias yad='yarn add -D'
