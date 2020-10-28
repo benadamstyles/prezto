@@ -43,6 +43,7 @@ fi
 . $(brew --prefix)/etc/profile.d/z.sh
 
 alias d.="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
+alias gup="gco master && gf upstream master && git merge upstream/master && gp && gco -"
 alias lslt="ls -lt"
 alias ifl="googler -j"
 alias goog="googler"
