@@ -44,6 +44,7 @@ fi
 
 alias d.="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 alias gup="gco master && gf upstream master && git merge upstream/master && gp && gco -"
+alias gcmn="git commit -n -m"
 alias lslt="ls -lt"
 alias ifl="googler -j"
 alias goog="googler"
