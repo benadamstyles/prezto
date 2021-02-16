@@ -181,6 +181,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # Spaceship prompt installed via npm
 # Set Spaceship ZSH as a prompt
+fpath=("$HOME/.zfunctions" $fpath)
 autoload -U promptinit
 promptinit
 prompt spaceship
