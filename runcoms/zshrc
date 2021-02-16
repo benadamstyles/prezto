@@ -36,7 +36,7 @@ export GIT_EDITOR="code -w"
 export BAT_THEME="TwoDark"
 
 # Only runs if jump is already installed
-if (($ + commands[jump - bin])) && [ -s $(jump-bin --zsh-integration) ]; then
+if (( $+commands[jump-bin] )) && [ -s $(jump-bin --zsh-integration) ]; then
   source $(jump-bin --zsh-integration)
 fi
 
