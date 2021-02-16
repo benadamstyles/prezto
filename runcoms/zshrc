@@ -18,11 +18,12 @@ if [ -s "${ZDOTDIR:-$HOME}/.private" ]; then
   source "${ZDOTDIR:-$HOME}/.private"
 fi
 
+# Load nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+which brew && [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
 
-if [[ $(uname) == Linux ]]; then
+which brew && if [[ $(uname) == Linux ]]; then
   export PATH="$HOME/.linuxbrew/bin:$PATH"
   export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
   export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
@@ -35,12 +36,12 @@ export GIT_EDITOR="code -w"
 export BAT_THEME="TwoDark"
 
 # Only runs if jump is already installed
-if (( $+commands[jump-bin] )) && [ -s $(jump-bin --zsh-integration) ]; then
+if (($ + commands[jump - bin])) && [ -s $(jump-bin --zsh-integration) ]; then
   source $(jump-bin --zsh-integration)
 fi
 
 # Installed with `brew install z`
-. $(brew --prefix)/etc/profile.d/z.sh
+which brew && . $(brew --prefix)/etc/profile.d/z.sh
 
 alias d.="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 alias gup="gco master && gf --prune upstream master && git merge upstream/master && gp && gco -"
@@ -104,75 +105,75 @@ setopt RM_STAR_WAIT
 # for BASH
 if type complete &>/dev/null; then
   _npm_completion() {
-        local words cword
-        if type _get_comp_words_by_ref &>/dev/null; then
-            _get_comp_words_by_ref -n = -n @ -w words -i cword
-        else
-            cword="$COMP_CWORD"
-            words=("${COMP_WORDS[@]}")
-        fi
+    local words cword
+    if type _get_comp_words_by_ref &>/dev/null; then
+      _get_comp_words_by_ref -n = -n @ -w words -i cword
+    else
+      cword="$COMP_CWORD"
+      words=("${COMP_WORDS[@]}")
+    fi
 
-        local si="$IFS"
+    local si="$IFS"
 
-        # if your npm command includes `install` or `i `
-        if [[ ${words[@]} =~ 'install' ]] || [[ ${words[@]} =~ 'i ' ]]; then
-            local cur=${COMP_WORDS[COMP_CWORD]}
+    # if your npm command includes `install` or `i `
+    if [[ ${words[@]} =~ 'install' ]] || [[ ${words[@]} =~ 'i ' ]]; then
+      local cur=${COMP_WORDS[COMP_CWORD]}
 
-            # supply autocomplete words from `~/.npm`, with $cur being value of current expansion like 'expre'
+      # supply autocomplete words from `~/.npm`, with $cur being value of current expansion like 'expre'
       COMPREPLY=($(compgen -W "$(ls ~/.npm)" -- $cur))
-        else
-            IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
-                COMP_LINE="$COMP_LINE" \
-                COMP_POINT="$COMP_POINT" \
-                npm completion -- "${words[@]}" \
-                2>/dev/null)) || return $?
-        fi
+    else
+      IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
+        COMP_LINE="$COMP_LINE" \
+        COMP_POINT="$COMP_POINT" \
+        npm completion -- "${words[@]}" \
+        2>/dev/null)) || return $?
+    fi
 
-        IFS="$si"
-    }
-    complete -o default -F _npm_completion npm
+    IFS="$si"
+  }
+  complete -o default -F _npm_completion npm
 # for ZSH
 elif type compdef &>/dev/null; then
-    _npm_completion() {
-        local si=$IFS
+  _npm_completion() {
+    local si=$IFS
 
-        # if your npm command includes `install`
-        if [[ ${words} =~ 'install' ]] || [[ ${words} =~ 'i ' ]]; then
-            compadd -- $(COMP_CWORD=$((CURRENT-1)) \
-                COMP_LINE=$BUFFER \
-                COMP_POINT=0 \
-                ls ~/.npm -- "${words[@]}" \
-                2>/dev/null)
+    # if your npm command includes `install`
+    if [[ ${words} =~ 'install' ]] || [[ ${words} =~ 'i ' ]]; then
+      compadd -- $(COMP_CWORD=$((CURRENT - 1)) \
+        COMP_LINE=$BUFFER \
+        COMP_POINT=0 \
+        ls ~/.npm -- "${words[@]}" \
+        2>/dev/null)
 
-        else
-            compadd -- $(COMP_CWORD=$((CURRENT-1)) \
-                COMP_LINE=$BUFFER \
-                COMP_POINT=0 \
-                npm completion -- "${words[@]}" \
-                2>/dev/null)
-        fi
+    else
+      compadd -- $(COMP_CWORD=$((CURRENT - 1)) \
+        COMP_LINE=$BUFFER \
+        COMP_POINT=0 \
+        npm completion -- "${words[@]}" \
+        2>/dev/null)
+    fi
 
-        IFS=$si
-    }
-    compdef _npm_completion npm
+    IFS=$si
+  }
+  compdef _npm_completion npm
 elif type compctl &>/dev/null; then
 
   _npm_completion() {
-        local cword line point words si
-        read -Ac words
-        read -cn cword
-        let cword-=1
-        read -l line
-        read -ln point
-        si="$IFS"
-        IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-            COMP_LINE="$line" \
-            COMP_POINT="$point" \
-            npm completion -- "${words[@]}" \
-            2>/dev/null)) || return $?
-        IFS="$si"
-    }
-    compctl -K _npm_completion npm
+    local cword line point words si
+    read -Ac words
+    read -cn cword
+    let cword-=1
+    read -l line
+    read -ln point
+    si="$IFS"
+    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+      COMP_LINE="$line" \
+      COMP_POINT="$point" \
+      npm completion -- "${words[@]}" \
+      2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
 
@@ -185,38 +186,38 @@ promptinit
 prompt spaceship
 
 SPACESHIP_PROMPT_ORDER=(
-#   time          # Time stampts section
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-#   hg            # Mercurial section (hg_branch  + hg_status)
-  package       # Package version
-  node          # Node.js section
-  ruby          # Ruby section
-#   elixir        # Elixir section
-#   xcode         # Xcode section
-#   swift         # Swift section
-#   golang        # Go section
-  php           # PHP section
-#   rust          # Rust section
-#   haskell       # Haskell Stack section
-#   julia         # Julia section
-#   docker        # Docker section
-#   aws           # Amazon Web Services section
-#   venv          # virtualenv section
-#   conda         # conda virtualenv section
-#   pyenv         # Pyenv section
-#   dotnet        # .NET section
-#   ember         # Ember.js section
-#   kubecontext   # Kubectl context section
-  exec_time     # Execution time
-  line_sep      # Line break
-  battery       # Battery level and status
-  vi_mode       # Vi-mode indicator
-  jobs          # Backgound jobs indicator
-#   exit_code     # Exit code section
-  char          # Prompt character
+  #   time          # Time stampts section
+  user # Username section
+  dir  # Current directory section
+  host # Hostname section
+  git  # Git section (git_branch + git_status)
+  #   hg            # Mercurial section (hg_branch  + hg_status)
+  package # Package version
+  node    # Node.js section
+  ruby    # Ruby section
+  #   elixir        # Elixir section
+  #   xcode         # Xcode section
+  #   swift         # Swift section
+  #   golang        # Go section
+  php # PHP section
+  #   rust          # Rust section
+  #   haskell       # Haskell Stack section
+  #   julia         # Julia section
+  #   docker        # Docker section
+  #   aws           # Amazon Web Services section
+  #   venv          # virtualenv section
+  #   conda         # conda virtualenv section
+  #   pyenv         # Pyenv section
+  #   dotnet        # .NET section
+  #   ember         # Ember.js section
+  #   kubecontext   # Kubectl context section
+  exec_time # Execution time
+  line_sep  # Line break
+  battery   # Battery level and status
+  vi_mode   # Vi-mode indicator
+  jobs      # Backgound jobs indicator
+  #   exit_code     # Exit code section
+  char # Prompt character
 )
 
 SPACESHIP_RPROMPT_ORDER=(
