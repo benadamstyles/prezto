@@ -18,6 +18,13 @@ if [ -s "${ZDOTDIR:-$HOME}/.private" ]; then
   source "${ZDOTDIR:-$HOME}/.private"
 fi
 
+# Load the correct homebrew location into PATH
+if [ "$(arch)" = "arm64" ]; then
+  eval $(/opt/homebrew/bin/brew shellenv);
+else
+  eval $(/usr/local/bin/brew shellenv);
+fi
+
 # Load nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
