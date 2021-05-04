@@ -53,6 +53,9 @@ fi
 # Installed with `brew install z`
 which brew && . $(brew --prefix)/etc/profile.d/z.sh
 
+git config --global fetch.prune true
+git config --global diff.colorMoved zebra
+
 alias d.="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 alias gup="gco master && gf --prune upstream master && git merge upstream/master && gp && gco -"
 alias gcmn="git commit -n -m"
