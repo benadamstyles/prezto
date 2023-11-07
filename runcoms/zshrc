@@ -197,12 +197,9 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# Spaceship prompt installed via npm
+# Spaceship prompt installed via homebrew
 # Set Spaceship ZSH as a prompt
-fpath=("$HOME/.zfunctions" $fpath)
-autoload -U promptinit
-promptinit
-prompt spaceship
+source "/opt/homebrew/opt/spaceship/spaceship.zsh"
 
 SPACESHIP_PROMPT_ORDER=(
   #   time          # Time stampts section
@@ -222,18 +219,17 @@ SPACESHIP_PROMPT_ORDER=(
   #   rust          # Rust section
   #   haskell       # Haskell Stack section
   #   julia         # Julia section
-  #   docker        # Docker section
+  docker # Docker section
   #   aws           # Amazon Web Services section
   #   venv          # virtualenv section
   #   conda         # conda virtualenv section
-  #   pyenv         # Pyenv section
+  pyenv # Pyenv section
   #   dotnet        # .NET section
   #   ember         # Ember.js section
   #   kubecontext   # Kubectl context section
   exec_time # Execution time
   line_sep  # Line break
   battery   # Battery level and status
-  vi_mode   # Vi-mode indicator
   jobs      # Backgound jobs indicator
   #   exit_code     # Exit code section
   char # Prompt character
