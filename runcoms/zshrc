@@ -76,6 +76,8 @@ alias yad='yarn add -D'
 alias ym='yarn maid'
 alias yw='yarn workspace'
 
+alias n='npm run'
+
 #flutter
 alias flutter='fvm flutter'
 
