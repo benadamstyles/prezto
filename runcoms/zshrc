@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 #
 # Executes commands at the start of an interactive session.
 #
@@ -22,9 +20,9 @@ fi
 
 # Load the correct homebrew location into PATH
 if [ "$(arch)" = "arm64" ]; then
-  eval $(/opt/homebrew/bin/brew shellenv);
+  eval $(/opt/homebrew/bin/brew shellenv)
 else
-  eval $(/usr/local/bin/brew shellenv);
+  eval $(/usr/local/bin/brew shellenv)
 fi
 
 # Load nvm
@@ -38,9 +36,22 @@ which brew && if [[ $(uname) == Linux ]]; then
   export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 fi
 
+# https://haacked.com/archive/2025/11/21/tree-me/
+export PATH=$HOME/bin:$PATH
+export WORKTREE_ROOT=$HOME/Dev/worktrees
+source <(tree-me shellenv)
+
+# Load GitHub Copilot
+eval "$(gh copilot alias -- zsh)"
+
 export PATH=/usr/local/opt/ruby/bin:$PATH
 export GEM_HOME=$HOME/gems
 export PATH=$HOME/gems/bin:$PATH
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export LESS="MR"
 export EDITOR="code -w"
@@ -254,6 +265,3 @@ test -r "$HOME/.opam/opam-init/init.zsh" && . "$HOME/.opam/opam-init/init.zsh" >
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

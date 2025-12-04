@@ -229,7 +229,7 @@ if ! zstyle -t ':prezto:module:git:alias' skip 'yes'; then
   alias gRb='git-hub-browse'
 
   # Stash (s)
-  alias gs='git stash'
+  # alias gs='git stash' # Removed in favour of git-spice.
   alias gsa='git stash apply'
   alias gsx='git stash drop'
   alias gsX='git-stash-clear-interactive'
